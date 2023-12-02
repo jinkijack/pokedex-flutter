@@ -39,23 +39,43 @@ class _DetailPageState extends State<DetailPage> {
       appBar: AppBar(
         title: Text(widget.pokemon.name),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Image.network(widget.pokemon.sprites.frontDefault),
-            Text(widget.pokemon.name),
-            Text(
-                'Types: ${widget.pokemon.types.map((t) => t.type.name).join(', ')}'),
-            Text('Attack: ${widget.pokemon.stats[0].baseStat}'),
-            Text('Defense: ${widget.pokemon.stats[1].baseStat}'),
-            Text('Speed: ${widget.pokemon.stats[5].baseStat}'),
-            ElevatedButton(
-              onPressed: _toggleFavorite,
-              child: Text(
-                  isFavorite ? 'Remove from Favorites' : 'Add to Favorites'),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment:
+                MainAxisAlignment.start, // Alinha ao topo verticalmente
+            crossAxisAlignment:
+                CrossAxisAlignment.center, // Centraliza horizontalmente
+            children: [
+              Center(
+                  child: Image.network(widget
+                      .pokemon.sprites.frontDefault)), // Centraliza a imagem
+              const SizedBox(height: 8), // Espaçamento entre a imagem e o texto
+              Center(
+                  child: Text(
+                      widget.pokemon.name.toUpperCase())), // Centraliza o texto
+              Center(
+                child: Text(
+                  'Types: ${widget.pokemon.types.map((t) => t.type.name).join(', ')}',
+                ),
+              ),
+              Center(
+                  child: Text('Attack: ${widget.pokemon.stats[0].baseStat}')),
+              Center(
+                  child: Text('Defense: ${widget.pokemon.stats[1].baseStat}')),
+              Center(child: Text('Speed: ${widget.pokemon.stats[5].baseStat}')),
+              const SizedBox(height: 16), // Espaçamento antes do botão
+              Center(
+                child: ElevatedButton(
+                  onPressed: _toggleFavorite,
+                  child: Text(isFavorite
+                      ? 'Remover dos favoritos'
+                      : 'Adicionar aos favoritos'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

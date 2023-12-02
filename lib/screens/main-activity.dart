@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/Pokemon.dart';
 import './details.dart';
+import './favorites.dart';
 import 'dart:convert';
 import '../services/PokemonService.dart';
 
@@ -124,7 +125,11 @@ class _HomePageState extends State<HomePage> {
               leading: const Icon(Icons.favorite, color: Colors.white),
               title: const Text('Favoritos'),
               onTap: () {
-                // Navigate to Favorites Page
+                Navigator.pop(context); // Fecha o Drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FavoritesPage()),
+                );
               },
             ),
           ],
